@@ -1,14 +1,13 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { getInfoNull } from "state/registerSlice";
-import RegistrationTemplate from "templates/RegistrationTemplate";
+import { getInfoNull } from "state/registerSlice.js";
+import PagesTemplate from "templates/PagesTemplate";
 import Home from "views/Home";
 import ResetPassword from "views/ResetPassword";
-import EmailConfirm from "views/registration/EmailConfirm";
 import PatientRegistration from "views/registration/PatientRegistration";
 import ProfessionalRegistration from "views/registration/ProfessionalRegistration";
 import UserSelection from "views/registration/UserSelection";
-import MainPage from "./views/registration/MainPage";
+import LandingPage from "./views/registration/LandingPage";
 
 function App() {
   const isBasicNull = useSelector(getInfoNull);
@@ -19,8 +18,8 @@ function App() {
     <div className="min-h-screen grid text-lg">
       <BrowserRouter>
         <Routes>
-          <Route element={<RegistrationTemplate />}>
-            <Route exact path="/" element={<MainPage />} />
+          <Route element={<PagesTemplate />}>
+            <Route exact path="/" element={<LandingPage />} />
             <Route
               path="/professional-registration"
               element={
@@ -42,17 +41,14 @@ function App() {
               }
             />
             <Route
-              exact
               path="/user-selection"
               element={isBasicNull ? <UserSelection /> : <Navigate to="/" />}
             />
             <Route
-              exact
               path="/home"
               element={isAuth ? <Home /> : <Navigate to="/" />}
             />
-            <Route exact path="/reset-password" element={<ResetPassword />} />
-            <Route exact path="/email-confirm" element={<EmailConfirm />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Route>
         </Routes>
       </BrowserRouter>
