@@ -1,4 +1,4 @@
-import Input from "components/registration/Input";
+import Input from "components/Input";
 import { Formik } from "formik";
 import Notiflix from "notiflix";
 import React from "react";
