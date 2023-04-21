@@ -4,7 +4,6 @@ import Doctor from "../models/Doctor.js";
 import HealthWorker from "../models/HealthOfficer.js";
 import Patient from "../models/Patient.js";
 import User from "../models/User.js";
-import { sendEmail } from "../utils/sendEmail.js";
 
 /* REGISTER HEALTH WORKER OR DOCTOR*/
 export const healthOfficerRegister = async (req, res) => {
@@ -59,14 +58,7 @@ export const healthOfficerRegister = async (req, res) => {
 
     const savedUser = await newUser.save();
 
-    await sendEmail(
-      email,
-      "Email confirmation",
-      "http://localhost:3000/email-confirm"
-    );
-    return res.status(201).json({
-      message: "An email was sent to your account, please verify it.",
-    });
+    return res.status(201).json(savedUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
