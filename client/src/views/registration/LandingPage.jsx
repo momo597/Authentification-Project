@@ -1,6 +1,6 @@
 import LockIcon from "@mui/icons-material/Lock";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import Input from "components/registration/Input";
+import Input from "components/Input";
 import { Formik } from "formik";
 import Notiflix from "notiflix";
 import { useDispatch } from "react-redux";
@@ -9,7 +9,7 @@ import { setLogin } from "state/authSlice";
 import { setInfo } from "state/registerSlice";
 import * as Yup from "yup";
 
-const MainPage = () => {
+const LandingPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -23,6 +23,10 @@ const MainPage = () => {
     );
     resetForm();
     navigate("/user-selection");
+  };
+
+  const passwordReset = () => {
+    navigate("/reset-password");
   };
 
   const handleLogin = async (values, { resetForm }) => {
@@ -243,7 +247,7 @@ const MainPage = () => {
               {button("Login")}
               <button
                 className="w-4/6 h-8 rounded-2xl drop-shadow-md bg-inputBg mt-6 text-slate-400"
-                onClick={navigate("/reset-password")}
+                onClick={passwordReset}
               >
                 Forgot password
               </button>
@@ -255,4 +259,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default LandingPage;
